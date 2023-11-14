@@ -62,6 +62,12 @@ public class UserServiceImpl implements UserService {
 		return userRep.existsByEmail(email);
 	}
 
+	@Override
+	public String registerUser(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

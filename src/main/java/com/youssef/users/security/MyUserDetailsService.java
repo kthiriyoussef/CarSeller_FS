@@ -21,16 +21,10 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "/userExist/{email}", method = RequestMethod.GET)
-	public boolean UserExist(@PathVariable("email")String email) {
-		boolean result;
-		result=userService.hasUserWithEmail(email);
-		System.out.println(result);
-		return userService.hasUserWithEmail(email);
-	}
+	
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername (String email) throws UsernameNotFoundException {
 		User user = userService.findUserByEmail(email);
 		if (user == null)
 			throw new UsernameNotFoundException("Utilisateur introuvable !");
@@ -39,6 +33,6 @@ public class MyUserDetailsService implements UserDetailsService {
 			GrantedAuthority auhority = new SimpleGrantedAuthority(role.getRole());
 			auths.add(auhority);
 		});
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), auths);
+		return new org.springframework.security.core.userdetails.User(	user.getUsername(), user.getPassword(), auths);
 	}
 }

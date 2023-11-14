@@ -2,12 +2,16 @@ package com.youssef.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.youssef.users.entities.Role;
 import com.youssef.users.entities.User;
+import com.youssef.users.mail.EmailSenderService;
 import com.youssef.users.service.UserService;
 import jakarta.annotation.PostConstruct;
+import jakarta.mail.MessagingException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +25,8 @@ public class RestuserApplication {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	private EmailSenderService senderService;
 
 	/*@PostConstruct
 	void init_users() {
@@ -42,5 +48,6 @@ public class RestuserApplication {
 	BCryptPasswordEncoder getBCE() {
 		return new BCryptPasswordEncoder();
 	}
+	
 
 }

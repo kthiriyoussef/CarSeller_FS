@@ -19,6 +19,8 @@ public interface UserService {
 	User findUserByEmail(String email);
 	
 	boolean hasUserWithEmail(String email);
+	
+	String registerUser(String email);
 
 	
 }
